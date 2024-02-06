@@ -16,6 +16,23 @@ def press(num):
     #Update expression variable
     equation.set(expression)
 
+#Equal button function
+def equalpress():
+    try:
+        global expression
+        total = str(eval(expression))
+        equation.set(total)
+        expression = ""
+
+    except:
+        equation.set(" error ")
+        expression = ""
+
+#Clear button function
+def clear():
+    global expression
+    expression = ""
+    equation.set("")
 
 #Driver code
 if __name__ == "__main__":
@@ -84,7 +101,34 @@ if __name__ == "__main__":
 
     #Oper buttons
 
+    plus = Button(gui, text=' + ', fg='black', bg='grey',
+                   command=lambda: press("+"), height=1, width=7)
+    plus.grid(row=2, column=3)
+
     minus = Button(gui, text=' - ', fg='black', bg='grey',
                    command=lambda: press("-"), height=1, width=7)
     minus.grid(row=3, column=3)
+
+    multiply = Button(gui, text=' * ', fg='black', bg='grey',
+                   command=lambda: press("*"), height=1, width=7)
+    multiply.grid(row=4, column=3)
+
+    divide = Button(gui, text=' / ', fg='black', bg='grey',
+                   command=lambda: press("/"), height=1, width=7)
+    divide.grid(row=5, column=3)
+
+    equal = Button(gui, text=' = ', fg='black', bg='grey',
+                   command=equalpress, height=1, width=7)
+    equal.grid(row=5, column=2)
+
+    clear = Button(gui, text=' Clear ', fg='black', bg='grey',
+                   command=clear, height=1, width=7)
+    clear.grid(row=5, column=1)
+
+    decimal = Button(gui, text=' . ', fg='black', bg='grey',
+                   command=lambda: press('.'), height=1, width=7)
+    decimal.grid(row=6, column=0)
+
+    #Start GUI
+    gui.mainloop()
 
